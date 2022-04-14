@@ -16,6 +16,7 @@ import {
   CUCUMBERTYPES,
   ITEMTYPES,
   LOGLEVELS,
+  MIMETYPES,
   OrangebeardOptions,
   STATUSES,
 } from "./types";
@@ -139,7 +140,7 @@ export class OrangebeardReporter extends WDIOReporter {
   }
 
   finishTest(test: TestStats) {
-    console.log(`Finish test: ${test.title}`);
+    //console.log(`Finish test: ${test.title}`);
     const { id, status } = this._context.getCurrentTest();
 
     const item = this._client.finishTestItem(id, {
@@ -150,7 +151,7 @@ export class OrangebeardReporter extends WDIOReporter {
   }
 
   onSuiteEnd(suite: SuiteStats) {
-    console.log(`Finished suite: ${suite.title}`);
+    //console.log(`Finished suite: ${suite.title}`);
     const { id, status } = this._context.getCurrentSuite();
 
     const item = this._client.finishTestItem(id, {
@@ -161,20 +162,45 @@ export class OrangebeardReporter extends WDIOReporter {
   }
 
   async onRunnerEnd(): Promise<void> {
-    console.log(`Finish runner`);
+    //console.log(`Finish runner`);
   }
 
   onHookStart(hook: HookStats) {
-    console.log(`Start hook: ${hook.title}`);
+    //console.log(`Start hook: ${hook.title}`);
   }
   onHookEnd(hook: HookStats) {
-    console.log(`Finish hook: ${hook.title}`);
+    //console.log(`Finish hook: ${hook.title}`);
   }
 
   onBeforeCommand(cmd: BeforeCommandArgs) {
-    console.log(`Before command: ${cmd.body}`);
+    //console.log(`Before command: ${cmd.body}`);
   }
+  
   onAfterCommand(cmd: AfterCommandArgs) {
-    console.log(`After command. Result: ${cmd.result}`);
+    const hasScreenshot = /screenshot$/i.test(cmd.command) && !!cmd.result.value;
+    const testItem = this._context.getCurrentTest();
+    if (hasScreenshot /*&& this.options.attachPicturesToLogs*/ && testItem) {
+      const logRQ = {
+        message: 'Screenshot',
+        level: LOGLEVELS.INFO,
+        file: {
+          name: 'screenshot',
+          type: MIMETYPES.PNG,
+          content: cmd.result.value,
+        },
+      };
+      this.sendLog(testItem.id, logRQ);
+    }
+  }
+
+  sendLog(tempId: string, { level, message = '', file }): void {
+    this._client.sendLog(
+      tempId,
+      {
+        message,
+        level,
+      },
+      file,
+    );
   }
 }
