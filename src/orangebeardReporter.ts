@@ -175,12 +175,12 @@ export class OrangebeardReporter extends WDIOReporter {
   onBeforeCommand(cmd: BeforeCommandArgs) {
     //console.log(`Before command: ${cmd.body}`);
   }
-  
+
   onAfterCommand(cmd: AfterCommandArgs) {
     const hasScreenshot = /screenshot$/i.test(cmd.command) && !!cmd.result.value;
     const testItem = this._context.getCurrentTest();
     if (hasScreenshot /*&& this.options.attachPicturesToLogs*/ && testItem) {
-      const logRQ = {
+      const screenshotLog = {
         message: 'Screenshot',
         level: LOGLEVELS.INFO,
         file: {
@@ -189,7 +189,7 @@ export class OrangebeardReporter extends WDIOReporter {
           content: cmd.result.value,
         },
       };
-      this.sendLog(testItem.id, logRQ);
+      this.sendLog(testItem.id, screenshotLog);
     }
   }
 
