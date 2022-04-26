@@ -148,4 +148,4 @@ jobs:
           npm run update-version
           git add package.json package-lock.json
           git commit -m "Update version"
-          git push origin master
+          git push origin main
