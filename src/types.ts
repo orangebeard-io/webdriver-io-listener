@@ -2,19 +2,19 @@ export interface OrangebeardOptions {
   token?: string;
   endpoint?: string;
   project?: string;
-  launch?: string;
+  testset?: string;
   description?: string;
   attributes?: string;
-  reportConsoleLogs?: boolean;
+  debug?: boolean;
 }
 
 export interface TestItem {
-  id: string;
+  id?: string;
   name: string;
   description?: string;
-  status?: STATUSES
-  parent?: string
-  type: ITEMTYPES
+  attributes?: Attribute[];
+  status?: STATUSES;
+  parentId?: string;
 }
 
 export interface Attachment {
@@ -26,17 +26,6 @@ export interface Attachment {
 export interface Attribute {
   value: string;
   key?: string;
-}
-
-export interface AdditionalData {
-  attributes?: Attribute[];
-  description?: string;
-  status?: string;
-  logs?: LogItem[];
-}
-
-export interface AdditionalSuitesData {
-  [name: string]: AdditionalData;
 }
 
 export interface LogItem {
@@ -77,10 +66,10 @@ export enum LOGLEVELS {
 }
 
 export enum STATUSES {
-    FAILED = 'failed',
-    PASSED = 'passed',
-    SKIPPED = 'skipped',
-    STOPPED = 'stopped',
-    INTERRUPTED = 'interrupted',
-    CANCELLED = 'cancelled',
-  }
+  FAILED = "failed",
+  PASSED = "passed",
+  SKIPPED = "skipped",
+  STOPPED = "stopped",
+  INTERRUPTED = "interrupted",
+  CANCELLED = "cancelled",
+}
