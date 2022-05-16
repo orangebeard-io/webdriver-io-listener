@@ -2,7 +2,7 @@
   "name": "@orangebeard-io/wdio-orangebeard-reporter",
   "version": "1.0.1",
   "description": "A reporter and service to send WDIO test output to Orangebeard",
-  "main": "src/index",
+  "main": "src/index.ts",
   "scripts": {
     "get-version": "echo $npm_package_version",
     "update-version": "release-it --ci --no-git --no-npm.publish",
