@@ -60,7 +60,7 @@ export class OrangebeardReporter extends WDIOReporter {
 
   onRunnerStart(runner: RunnerStats) {
     this._testrunId = this._client.startLaunch({
-      id: this.getLaunchIdFromFile(runner.config.outputDir),
+      id: this.getLaunchIdFromFile(runner.config.outputDir || '.'),
     }).tempId;
   }
 

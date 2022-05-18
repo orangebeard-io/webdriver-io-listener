@@ -13,7 +13,7 @@ export class OrangebeardService {
 
   constructor(options: OrangebeardOptions, capabilities, config) {
     this._orangebeardOptions = options;
-    this._outputDir = config.outputDir;
+    this._outputDir = config.outputDir || '.';
   }
 
   // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
