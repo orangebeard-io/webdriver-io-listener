@@ -2,7 +2,9 @@
   "name": "@orangebeard-io/wdio-orangebeard-reporter",
   "version": "1.0.1",
   "description": "A reporter and service to send WDIO test output to Orangebeard",
-  "main": "src/index.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "module": "commonjs",
   "scripts": {
     "get-version": "echo $npm_package_version",
     "update-version": "release-it --ci --no-git --no-npm.publish",
@@ -25,10 +27,11 @@
   },
   "homepage": "https://github.com/orangebeard-io/webdriver-io-listener#readme",
   "dependencies": {
+    "@orangebeard-io/javascript-client": "1.0.9",
     "@wdio/reporter": "7.19.0",
     "@wdio/types": "7.19.0",
-    "@orangebeard-io/javascript-client": "1.0.9",
-    "strip-color": "0.1.0"
+    "strip-color": "0.1.0",
+    "typescript": "^4.6.4"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",

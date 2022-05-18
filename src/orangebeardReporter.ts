@@ -10,7 +10,7 @@ import WDIOReporter, {
   CommandArgs,
 } from "@wdio/reporter";
 import { RunnerContext } from "./runnerContext";
-import fs from "fs";
+import * as fs from "fs";
 import {
   Attribute,
   CUCUMBERTYPES,

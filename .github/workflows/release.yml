@@ -106,6 +106,8 @@ jobs:
             node_modules-
       - name: Install Node dependencies
         run: npm install
+      - name: Transpile to JS
+        run: npx tsc
       - name: Publish to NPM
         run: npm publish --access public
         env:
@@ -143,6 +145,8 @@ jobs:
             node_modules-
       - name: Install Node dependencies
         run: npm install
+      - name: Transpile to JS
+        run: npx tsc
       - name: Update version
         run: |
           npm run update-version

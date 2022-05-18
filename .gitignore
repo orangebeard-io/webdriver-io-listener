@@ -8,3 +8,5 @@ node_modules/
 **/orangebeard.json
 .vscode
 *.tgz
+
+build/

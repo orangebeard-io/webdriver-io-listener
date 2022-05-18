@@ -1,7 +1,7 @@
 import OrangebeardClient from "@orangebeard-io/javascript-client";
 import { OrangebeardOptions } from "./types";
-import fs from "fs";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
 
 const util = require ('./util');
 
