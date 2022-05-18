@@ -1,6 +1,6 @@
 {
   "name": "@orangebeard-io/wdio-orangebeard-reporter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A reporter and service to send WDIO test output to Orangebeard",
   "main": "build/index.js",
   "types": "build/index.d.ts",
